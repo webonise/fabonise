@@ -21,11 +21,12 @@
                /*display: block;
                text-align: left;
                float: left;*/
-
+               height: 150px;
             }
             
             .fb_link {
                  /*float: left;*/
+                 outline: none;
                  
             }
             
@@ -38,10 +39,12 @@
         <script>
 
             //var appId = "133576213366250";
-            var appId = '181813861833867';//';
+            var appId = '181813861833867';//'181813861833867;
             var checkLogin = true;
             var enableCookie = true;
             var useXFBML = true;
+
+            FB.Canvas.setSize({ width: 640, height: 1500 }); // Live in the past
 
             function WeboCheckFBLoginWithPermissions(){
                 
@@ -153,7 +156,7 @@
                         
                         var friend = response.data[i];                        
                         
-                        outstring = outstring + '<td class = "nameWrapper" align="left" nowrap ><fb:profile-pic uid="' + friend.id + '" width="50" height ="50"/></fb:profile-pic>\n\
+                        outstring = outstring + '<td class = "nameWrapper" align="left" nowrap ><fb:profile-pic uid="' + friend.id + '"/></fb:profile-pic>\n\
                                                  <div id ="imageCSS"><a href="javascript:;" class ="kickAss" onclick = "javascript:postMsgOnWall('+friend.id+');">&nbsp;</a></div>   <br/>\n\
                                                 <fb:name uid="' + friend.id + '" /></fb:name><br/><br/><br/></td>'
 
@@ -199,6 +202,7 @@
                         //alert('Error occured'+response.error);
                     } else {
                         //alert('Post ID: ' + response.id);
+                        alert('You just kicked your friend.');
                     }
                 });
             }
