@@ -157,7 +157,7 @@
                                                  <div id ="imageCSS"><a href="javascript:;" class ="kickAss" onclick = "javascript:postMsgOnWall('+friend.id+');">&nbsp;</a></div>   <br/>\n\
                                                 <fb:name uid="' + friend.id + '" /></fb:name><br/><br/><br/></td>'
 
-                        if(j%4 == '0'){
+                        if(j%3 == '0'){
                                                     
                             outstring = outstring + "</tr><tr>";
                         }
