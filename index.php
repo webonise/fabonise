@@ -1,12 +1,12 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
     <head>
-        <title>Fabonise: KickAss</title>
+        <title>Fabonise: KickEm</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <style>
             a.kickAss {
-                background: url("kickass.png") no-repeat scroll 0 0 transparent;
+                background: url("kickEm.png") no-repeat scroll 0 0 transparent;
                 cursor: pointer;
                 display: block;
                 /*float: left;*/
@@ -134,9 +134,9 @@
                 
                 FB.api('/me/feed', 'post', { message: body }, function(response) {
                     if (!response || response.error) {
-                        alert('Error occured'+response.error);
+                        //alert('Error occured'+response.error);
                     } else {
-                        alert('Post ID: ' + response.id);
+                        //alert('Post ID: ' + response.id);
                     }
                 });
 
