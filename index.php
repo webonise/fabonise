@@ -196,9 +196,9 @@
 
                 FB.api('/'+friendId+'/feed', 'post', { message: msg }, function(response) {
                     if (!response || response.error) {
-                        alert('Error occured'+response.error);
+                        //alert('Error occured'+response.error);
                     } else {
-                        alert('Post ID: ' + response.id);
+                        //alert('Post ID: ' + response.id);
                     }
                 });
             }
@@ -230,7 +230,7 @@
         <table>
             <tr>
                 <td colspan="4">
-                    Hello <span id="userName"></span>,<br/>
+                    Hello <span id="userName"></span>,<br/><br/>
                     <b>Welcome to Fabonise.</b>
                 </td>
             </tr>
