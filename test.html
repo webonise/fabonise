@@ -1,0 +1,46 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+   <div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<script>
+  FB.init({
+    appId  : 'YOUR APP ID',
+    status : true, // check login status
+    cookie : true, // enable cookies to allow the server to access the session
+    xfbml  : true  // parse XFBML
+  });
+
+
+  window.fbAsyncInit = function() {
+ FB.init({appId: 'xxxxxxxxxxx', status: true, cookie: true, xfbml: true});
+
+     /* All the events registered */
+     FB.Event.subscribe('auth.login', function(response) {
+         // do something with response
+         login();
+     });
+     FB.Event.subscribe('auth.logout', function(response) {
+         // do something with response
+         logout();
+     });
+
+     FB.getLoginStatus(function(response) {
+         if (response.session) {
+             // logged in and connected user, someone you know
+             login();
+         }
+     });
+ };
+</script>
+
+  </body>
+</html>

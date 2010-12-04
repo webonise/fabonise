@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+    </head>
+    <body>
+        <div id="fb-root"></div>
+
+        <script src="http://connect.facebook.net/en_US/all.js"></script>
+        <script>
+
+            var appId = "133576213366250";
+            var checkLogin = true;
+            var enableCookie = true;
+            var useXFBML = true;
+
+            function WeboCheckFBLoginWithPermissions(){
+                
+                FB.login(function(response) {
+                    
+                    if (response.session) {
+                        
+                        if (response.perms) {
+                            
+                            // user is logged in and granted some permissions.
+                            // perms is a comma separated list of granted permissions
+                            // publishStreamWithFBPopUp('Fabonise', 'Webonise app interacting FB', 'Webo App', 'http://www.weboniselab.com');
+                            //publishStreamToFB('awesome evening with geeks coding.debugging.testing.oh.yes.itsworking -> apps -> :)');
+                            //postOnFriendWall();
+                            
+                            WeboShowMyFriends();
+
+                            getUserInfo();
+                            
+                        } else {
+                            // user is logged in, but did not grant any permissions
+                            
+                        }
+                    } else {
+                        // user is not logged in
+                    }
+                }, {perms:'read_stream,publish_stream,offline_access,sms'});
+
+
+            }
+
+            /*function WeboAskForLogin(){
+                
+                FB.login(function(response) {
+                    if (response.session) {
+                        // alert(response.session); // user successfully logged in
+                        //publishStreamToFB('awesome evening with geeks coding.debugging.testing.oh.yes.itsworking -> apps -> :)');
+                        WeboInviteMyFriends();
+                    } else {
+                        alert("not logged in");
+                        // user cancelled login
+                    }
+                });
+
+            }*/
+
+            function WeboLogoutMe(){
+                FB.logout(function(response){alert(response)});
+            }
+
+            function publishStreamWithFBPopUp(AppName,captionText,describeApp, AppLink){//alert('ok');
+                FB.ui(
+                {
+                    method: 'stream.publish',
+                    attachment: {
+                        name: AppName,
+                        caption: captionText,
+                        description: (
+                        describeApp
+                    ),
+                        href: AppLink
+                    },
+                    action_links: [
+                        { text: AppName, href:AppLink }
+                    ]
+                },
+                function(response) {
+                    if (response && response.post_id) {
+                        alert('Post was published.');
+                    } else {
+                        alert('Post was not published.');
+                    }
+                }
+            );
+
+            }
+
+            function getUserInfo(){
+
+                FB.api('/me/', function(response) {
+                    //alert(response.name);
+
+                    document.getElementById('userName').innerHTML = response.name;
+                });
+            }
+
+            function WeboPublishStreamToFB(text){
+
+                var body = text;
+                
+                FB.api('/me/feed', 'post', { message: body }, function(response) {
+                    if (!response || response.error) {
+                        alert('Error occured'+response.error);
+                    } else {
+                        alert('Post ID: ' + response.id);
+                    }
+                });
+
+            }
+
+            function WeboShowMyFriends(){
+                FB.api('/me/friends/', function(response) {
+                    //alert(response);
+                    
+                    var outstring = '<p><b>Your Friends :</b></p><p>&nbsp;</p><table><tr>';
+                    var j = 1;
+                    
+                    for (var i=0, l=response.data.length; i<l; i++) {
+                        
+                        var friend = response.data[i];                        
+                        
+                        outstring = outstring + '<td nowrap valign="middle"><fb:profile-pic uid="' + friend.id + '"  width="50" height="50" /></fb:profile-pic>\n\
+                                                 <div><a href="javascript:;" onclick = "javascript:postMsgOnWall('+friend.id+');">Kick Him</a></div>   <br/>\n\
+                                                <fb:name uid="' + friend.id + '" /></fb:name><br/><br/><br/></td>'
+
+                                                if(j%4 == '0'){
+                                                    
+                                                    outstring = outstring + "</tr><tr>";
+                                                }
+                        j++;
+                    }
+                        outstring = outstring + '</tr></table>';
+                    
+                    //alert(outstring);
+                    
+                    document.getElementById('myFriendList').innerHTML = outstring;
+                    
+                    FB.XFBML.parse(document.getElementById('myFriendList'));
+                    //alert(friendsList);
+                });
+
+            }
+
+
+            function WeboInitSyncronously(){
+                FB.init({
+                    appId  : appId,
+                    status : checkLogin, // check login status
+                    cookie : enableCookie, // enable cookies to allow the server to access the session
+                    xfbml  : useXFBML  // parse XFBML
+                });
+
+                if(checkLogin == true){
+                    // checkFBLogin();
+                    WeboCheckFBLoginWithPermissions();
+                    
+                }
+            }
+
+            function postOnFriendWall(friendId, msg){
+                //var body = text;
+
+                FB.api('/'+friendId+'/feed', 'post', { message: msg }, function(response) {
+                    if (!response || response.error) {
+                        alert('Error occured'+response.error);
+                    } else {
+                        alert('Post ID: ' + response.id);
+                    }
+                });
+            }
+
+            function postMsgOnWall(friendId){
+
+                var msg = 'Has just kicked you? ';
+                
+                postOnFriendWall(friendId, msg);
+            }
+
+            /*function WeboInitAsyncronosly(){
+                window.fbAsyncInit = function() {
+                    FB.init({appId: appId, status: checkLogin, cookie: enableCookie,
+                        xfbml: useXFBML});
+                };
+                (function() {
+                    var e = document.createElement('script'); e.async = true;
+                    e.src = document.location.protocol +
+                        '//connect.facebook.net/en_US/all.js';
+                    document.getElementById('fb-root').appendChild(e);
+                }());
+
+            }*/
+
+            WeboInitSyncronously();
+        </script>
+
+        <table>
+            <tr>
+                <td colspan="4">
+                    Hello <span id="userName"></span>,<br/>
+                    <b>Welcome to Fabonise.</b>
+                </td>
+            </tr>
+        </table>
+
+
+        <div id="myFriendList"></div>
+    </body>
+</html>
