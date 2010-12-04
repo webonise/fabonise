@@ -4,7 +4,32 @@
         <title>Fabonise: KickAss</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+        <style>
+            a.kickAss {
+                background: url("kickass.png") no-repeat scroll 0 0 transparent;
+                cursor: pointer;
+                display: block;
+                /*float: left;*/
+                height: 20px;
+                margin: 5px 0;
+                text-indent: -9999px;
+                width: 80px;
 
+            }
+
+            .nameWrapper {
+               /*display: block;
+               text-align: left;
+               float: left;*/
+
+            }
+            
+            .fb_link {
+                 /*float: left;*/
+                 
+            }
+            
+        </style>
     </head>
     <body>
         <div id="fb-root"></div>
@@ -13,7 +38,7 @@
         <script>
 
             //var appId = "133576213366250";
-            var appId = '181813861833867';
+            var appId = '181813861833867';//';
             var checkLogin = true;
             var enableCookie = true;
             var useXFBML = true;
@@ -128,17 +153,17 @@
                         
                         var friend = response.data[i];                        
                         
-                        outstring = outstring + '<td nowrap valign="middle"><fb:profile-pic uid="' + friend.id + '"  width="50" height="50" /></fb:profile-pic>\n\
-                                                 <div><a href="javascript:;" onclick = "javascript:postMsgOnWall('+friend.id+');">Kick Him</a></div>   <br/>\n\
+                        outstring = outstring + '<td class = "nameWrapper" align="left" nowrap ><fb:profile-pic uid="' + friend.id + '" width="50" height ="50"/></fb:profile-pic>\n\
+                                                 <div id ="imageCSS"><a href="javascript:;" class ="kickAss" onclick = "javascript:postMsgOnWall('+friend.id+');">&nbsp;</a></div>   <br/>\n\
                                                 <fb:name uid="' + friend.id + '" /></fb:name><br/><br/><br/></td>'
 
-                                                if(j%4 == '0'){
+                        if(j%4 == '0'){
                                                     
-                                                    outstring = outstring + "</tr><tr>";
-                                                }
+                            outstring = outstring + "</tr><tr>";
+                        }
                         j++;
                     }
-                        outstring = outstring + '</tr></table>';
+                    outstring = outstring + '</tr></table>';
                     
                     //alert(outstring);
                     
