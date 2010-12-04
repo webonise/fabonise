@@ -59,8 +59,7 @@
                             
                             WeboShowMyFriends();
 
-                            getUserInfo();
-                            
+                            getUserInfo();                            
                         } else {
                             // user is logged in, but did not grant any permissions
                             
@@ -205,7 +204,7 @@
 
             function postMsgOnWall(friendId){
 
-                var msg = 'Has just kicked you? ';
+                var msg = 'has just kicked. Wanna  kick emm back..?';
                 
                 postOnFriendWall(friendId, msg);
             }
@@ -231,7 +230,7 @@
             <tr>
                 <td colspan="4">
                     Hello <span id="userName"></span>,<br/><br/>
-                    <b>Welcome to Fabonise.</b>
+                    <b>Welcome to KickEmm.</b>
                 </td>
             </tr>
         </table>
