@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
     <head>
-        <title></title>
+        <title>Fabonise: KickAss</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 
@@ -12,7 +12,8 @@
         <script src="http://connect.facebook.net/en_US/all.js"></script>
         <script>
 
-            var appId = "133576213366250";
+            //var appId = "133576213366250";
+            var appId = '181813861833867';
             var checkLogin = true;
             var enableCookie = true;
             var useXFBML = true;
