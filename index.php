@@ -44,7 +44,7 @@
             var enableCookie = true;
             var useXFBML = true;
 
-            FB.Canvas.setSize({ width: 640, height: 1500 }); // Live in the past
+            FB.Canvas.setSize({ width: 640, height: auto }); // Live in the past
 
             function WeboCheckFBLoginWithPermissions(){
                 
