@@ -136,6 +136,7 @@
                         //alert('Error occured'+response.error);
                     } else {
                         //alert('Post ID: ' + response.id);
+                        alert('You just kicked your friend.');
                     }
                 });
 
@@ -204,7 +205,7 @@
 
             function postMsgOnWall(friendId){
 
-                var msg = 'has just kicked. Wanna  kick emm back..?';
+                var msg = 'has just kicked you. Wanna  kick emm back..?';
                 
                 postOnFriendWall(friendId, msg);
             }
